@@ -58,34 +58,20 @@ class CarInterface(object):
     ret.enableCamera = True
     std_cargo = 136
 
-    if candidate in [CAR.OUTBACK]:
+    if candidate in [CAR.OUTBACK, CAR.LEGACY]:
       ret.mass = 1568 + std_cargo
       ret.wheelbase = 2.75
       ret.centerToFront = ret.wheelbase * 0.5 + 1
-
+      
       ret.steerRatio = 8.3
       ret.steerActuatorDelay = 0.3
-      ret.steerRateCost = 0.3
+      ret.steerRateCost = 0
       ret.steerKf = 0.00006
-      ret.steerKiBP, ret.steerKpBP = [[0.], [0.]]
-      ret.steerKpV, ret.steerKiV = [[0.0002], [0.00]]
+      ret.steerKiBP, ret.steerKpBP = [[0.], [0.]] # m/s
+      ret.steerKpV, ret.steerKiV = [[0.0003], [0.00]]
       ret.steerMaxBP = [0.] # m/s
       ret.steerMaxV = [1.]
-      
-    if candidate in [CAR.LEGACY]:
-      ret.mass = 1568 + std_cargo
-      ret.wheelbase = 2.75
-      ret.centerToFront = ret.wheelbase * 0.5 + 1
 
-      ret.steerRatio = 7
-      ret.steerActuatorDelay = 0.3
-      ret.steerRateCost = 0.3
-      ret.steerKf = 0.00006
-      ret.steerKiBP, ret.steerKpBP = [[0.], [0.]]
-      ret.steerKpV, ret.steerKiV = [[0.0002], [0.00]]
-      ret.steerMaxBP = [0.] # m/s
-      ret.steerMaxV = [1.]
-      
     elif candidate in [CAR.XV2018]:
       ret.mass = 1568 + std_cargo
       ret.wheelbase = 2.75
@@ -100,25 +86,28 @@ class CarInterface(object):
       ret.steerMaxBP = [0.] # m/s
       ret.steerMaxV = [1.]
 
+    ret.safetyModel = car.CarParams.SafetyModels.subaru
+    ret.steerControlType = car.CarParams.SteerControlType.torque
+    ret.steerLimitAlert = False
+    # testing tuning
+
     # FIXME: from gm
     ret.gasMaxBP = [0.]
     ret.gasMaxV = [.5]
     ret.brakeMaxBP = [0.]
     ret.brakeMaxV = [1.]
+
     ret.longPidDeadzoneBP = [0.]
     ret.longPidDeadzoneV = [0.]
+
     ret.longitudinalKpBP = [5., 35.]
     ret.longitudinalKpV = [2.4, 1.5]
     ret.longitudinalKiBP = [0.]
     ret.longitudinalKiV = [0.36]
-    ret.steerLimitAlert = True
+
     ret.stoppingControl = True
     ret.startAccel = 0.8
-
-    ret.steerControlType = car.CarParams.SteerControlType.torque
-
     # end from gm
-
 
     # hardcoding honda civic 2016 touring params so they can be used to
     # scale unknown params for other cars
@@ -127,8 +116,8 @@ class CarInterface(object):
     centerToFront_civic = wheelbase_civic * 0.4
     centerToRear_civic = wheelbase_civic - centerToFront_civic
     rotationalInertia_civic = 2500
-    tireStiffnessFront_civic = 85400
-    tireStiffnessRear_civic = 90000
+    tireStiffnessFront_civic = 192150
+    tireStiffnessRear_civic = 202500
     centerToRear = ret.wheelbase - ret.centerToFront
     # TODO: get actual value, for now starting with reasonable value for
     # civic and scaling by mass and wheelbase
@@ -226,7 +215,6 @@ class CarInterface(object):
     # cast to reader so it can't be modified
     return ret.as_reader()
 
-  # car controller 100hz
-  def apply(self, c):
+  def apply(self, c, perception_state):
     self.CC.update(self.sendcan, c.enabled, self.CS, self.frame, c.actuators)
     self.frame += 1
