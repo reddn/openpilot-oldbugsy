@@ -103,6 +103,7 @@ Community Maintained Cars
 | Make          | Model                     | Supported Package    | Lateral | Longitudinal   | No Accel Below   | No Steer Below |
 | -------       | ----------------------    | -------------------- | ------- | ------------   | --------------   | -------------- |
 | Honda         | Fit 2018                  | Honda Sensing        | Yes     | Yes            | 25mph<sup>1</sup>| 12mph          |
+| Subaru             | Outback 2015          | Eyesight             | Yes     | Stock          | 0mph             | 0mph           |
 
 [[Honda Fit Pull Request]](https://github.com/commaai/openpilot/pull/266).
 
