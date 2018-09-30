@@ -75,7 +75,7 @@ class CarController(object):
       if not lkas_enabled:
           apply_steer = 0
 
-      if self.carFingerprint in (CAR.OUTBACK, CAR.LEGACY):
+      if self.car_fingerprint in (CAR.OUTBACK, CAR.LEGACY):
         
         if apply_steer != 0:
           chksm_steer = apply_steer
