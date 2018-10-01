@@ -78,7 +78,7 @@ class CarController(object):
       if self.car_fingerprint in (CAR.OUTBACK, CAR.LEGACY):
         
         if apply_steer != 0:
-          chksm_steer = apply_steer
+          chksm_steer = apply_steer * -1
           chksm_engage = 1
         else:
           chksm_steer = 0
