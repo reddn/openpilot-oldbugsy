@@ -63,7 +63,7 @@ class CarState(object):
     self.v_wheel_fr = pt_cp.vl["WHEEL_SPEEDS"]['FR'] * CV.KPH_TO_MS
     self.v_wheel_rl = pt_cp.vl["WHEEL_SPEEDS"]['RL'] * CV.KPH_TO_MS
     self.v_wheel_rr = pt_cp.vl["WHEEL_SPEEDS"]['RR'] * CV.KPH_TO_MS
-    speed_estimate = (self.v_wheel_fl + self.v_wheel_fr + self.v_wheel_rl + self.v_wheel_rr) / 4.0
+    speed_estimate = float(np.mean([self.v_wheel_fl, self.v_wheel_fr, self.v_wheel_rl, self.v_wheel_rr]))
 
     self.v_ego_raw = speed_estimate
     v_ego_x = self.v_ego_kf.update(speed_estimate)
@@ -80,7 +80,7 @@ class CarState(object):
     self.main_on = pt_cp.vl["CruiseControl"]['Cruise_On']
 
     if self.car_fingerprint in (CAR.OUTBACK, CAR.LEGACY):
-      self.steer_override = abs(self.steer_torque_driver) > 2.0
+      self.steer_override = abs(self.steer_torque_driver) > 1.5
       self.angle_steers = pt_cp.vl["Steering_Torque"]['Steering_Angle']
     
     if self.car_fingerprint == CAR.XV2018:  
