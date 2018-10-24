@@ -78,7 +78,7 @@ class CarController(object):
       if self.car_fingerprint in (CAR.OUTBACK, CAR.LEGACY):
         
         if apply_steer != 0:
-          chksm_steer = apply_steer * -1
+          chksm_steer = apply_steer
           chksm_engage = 1
         else:
           chksm_steer = 0
@@ -88,9 +88,8 @@ class CarController(object):
         idx = (frame / P.STEER_STEP) % 8
         steer2 = (chksm_steer >> 8) & 0x1F
         steer1 =  chksm_steer - (steer2 << 8)
-        byte2 = steer2
         checksum = (idx + steer2 + steer1 + chksm_engage) % 256
-        
+'''
       if (self.car_fingerprint == CAR.XV2018):
       
         #counts from 0 to 15 then back to 0 + 16 for enable bit
@@ -107,7 +106,8 @@ class CarController(object):
         byte2 = steer2 + left3
 
         checksum = ((idx + steer1 + byte2) % 256) + 35
-      can_sends.append(subarucan.create_steering_control(self.packer_pt, canbus.powertrain, CS.CP.carFingerprint, idx, steer1, byte2, checksum))
+'''
+      can_sends.append(subarucan.create_steering_control(self.packer_pt, canbus.powertrain, CS.CP.carFingerprint, idx, steer, checksum))
 
 
     sendcan.send(can_list_to_can_capnp(can_sends, msgtype='sendcan').to_bytes())
