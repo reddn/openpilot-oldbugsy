@@ -106,7 +106,7 @@ BO_ 321 undefined: 8 XXX
  SG_ Wheel_Torque : 16|12@1+ (1,0) [0|255] "" XXX
  SG_ Engine_Stop : 15|1@0+ (1,0) [0|3] "" XXX
 
-BO_ 324 CruiseControl_2015: 8 XXX
+BO_ 324 CruiseControl: 8 XXX
  SG_ Cruise_On : 48|1@0+ (1,0) [0|3] "" XXX
  SG_ OnOffButton : 2|1@1+ (1,0) [0|3] "" XXX
  SG_ SET_BUTTON : 3|1@0+ (1,0) [0|3] "" XXX
