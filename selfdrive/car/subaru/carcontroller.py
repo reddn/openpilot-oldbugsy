@@ -89,6 +89,12 @@ class CarController(object):
         steer2 = (chksm_steer >> 8) & 0x1F
         steer1 =  chksm_steer - (steer2 << 8)
         checksum = (idx + steer2 + steer1 + chksm_engage) % 256
+
+        can_sends.append(subarucan.create_steering_control(self.packer_pt, canbus.powertrain, CS.CP.carFingerprint, idx, steer, checksum))
+
+
+      sendcan.send(can_list_to_can_capnp(can_sends, msgtype='sendcan').to_bytes())
+
 '''
       if (self.car_fingerprint == CAR.XV2018):
       
@@ -107,7 +113,3 @@ class CarController(object):
 
         checksum = ((idx + steer1 + byte2) % 256) + 35
 '''
-      can_sends.append(subarucan.create_steering_control(self.packer_pt, canbus.powertrain, CS.CP.carFingerprint, idx, steer, checksum))
-
-
-    sendcan.send(can_list_to_can_capnp(can_sends, msgtype='sendcan').to_bytes())
