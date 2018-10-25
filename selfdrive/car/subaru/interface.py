@@ -66,7 +66,7 @@ class CarInterface(object):
       ret.steerRatio = 14
       ret.steerActuatorDelay = 0.3
       ret.steerRateCost = 0
-      ret.steerKf = 0.000002
+      ret.steerKf = 0.000018
       ret.steerKiBP, ret.steerKpBP = [[0.], [0.]] # m/s
       ret.steerKpV, ret.steerKiV = [[0.003], [0.00]]
       ret.steerMaxBP = [0.] # m/s
