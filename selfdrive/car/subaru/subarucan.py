@@ -9,8 +9,8 @@ def create_steering_control(packer, bus, car_fingerprint, idx, steer, checksum):
       "LKAS_Active": 1 if steer != 0 else 0,
       "Checksum": checksum
     }
-'''    
-  if car_fingerprint == CAR.XV2018:
+    return packer.make_can_msg("ES_LKAS", 0, values)
+'''  if car_fingerprint == CAR.XV2018:
     values = {
       "Checksum": checksum,
       "Byte1": idx,
@@ -18,4 +18,4 @@ def create_steering_control(packer, bus, car_fingerprint, idx, steer, checksum):
       "Byte3": byte2
     }
 '''
-  return packer.make_can_msg("ES_LKAS", 0, values)
+
