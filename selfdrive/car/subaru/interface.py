@@ -16,7 +16,7 @@ except ImportError:
 class CanBus(object):
   def __init__(self):
     self.powertrain = 0
-    self.obstacle = 1
+    self.camera = 1
 
 class CarInterface(object):
   def __init__(self, CP, sendcan=None):
@@ -31,6 +31,7 @@ class CarInterface(object):
     self.CS = CarState(CP, canbus)
     self.VM = VehicleModel(CP)
     self.pt_cp = get_powertrain_can_parser(CP, canbus)
+    self.cam_cp = get_cam_parser(CP, canbus)
 
     # sending if read only is False
     if sendcan is not None:
@@ -153,7 +154,8 @@ class CarInterface(object):
   def update(self, c):
 
     self.pt_cp.update(int(sec_since_boot() * 1e9), False)
-    self.CS.update(self.pt_cp)
+    self.cam_cp.update(int(sec_since_boot() * 1e9), False)
+    self.CS.update(self.pt_cp, self.cam_cp)
 
     # create message
     ret = car.CarState.new_message()
