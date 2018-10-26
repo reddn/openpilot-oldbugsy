@@ -100,7 +100,7 @@ class CarState(object):
       self.acc_active = pt_cp.vl["CruiseControl"]['Cruise_Activated'] or cam_cp.vl["ES_LDW"]['All_depart_2015']
       self.main_on = pt_cp.vl["CruiseControl"]['Cruise_On'] or cam_cp.vl["ES_LDW"]['All_depart_2015']
       self.standstill = cam_cp.vl["ES_Status"]['WHEELS_MOVING_2015']
-      self.saved_speed = cam_cp.vl["ES_Status"]['Saved_Speed']
+      self.cruise_set_speed = cam_cp.vl["ES_Status"]['Saved_Speed'] * CV.KPH_TO_MS
       self.lead_car = cam_cp.vl["ES_Status"]['Car_Follow']
       self.lead_car_far = cam_cp.vl["ES_Status"]['Obstacle_Distance']
       self.lead_car_close = cam_cp.vl["ES_Status"]['CloseDistance']
