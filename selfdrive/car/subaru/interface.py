@@ -12,12 +12,6 @@ try:
 except ImportError:
   CarController = None
 
-
-class CanBus(object):
-  def __init__(self):
-    self.powertrain = 0
-    self.camera = 1
-
 class CarInterface(object):
   def __init__(self, CP, sendcan=None):
     self.CP = CP
@@ -28,10 +22,10 @@ class CarInterface(object):
 
     # *** init the major players ***
     canbus = CanBus()
-    self.CS = CarState(CP, canbus)
+    self.CS = CarState(CP)
     self.VM = VehicleModel(CP)
-    self.pt_cp = get_powertrain_can_parser(CP, canbus)
-    self.cam_cp = get_cam_parser(CP, canbus)
+    self.pt_cp = get_powertrain_can_parser(CP)
+    self.cam_cp = get_cam_parser(CP)
 
     # sending if read only is False
     if sendcan is not None:
