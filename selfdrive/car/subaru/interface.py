@@ -5,7 +5,7 @@ from selfdrive.config import Conversions as CV
 from selfdrive.controls.lib.drive_helpers import create_event, EventTypes as ET
 from selfdrive.controls.lib.vehicle_model import VehicleModel
 from selfdrive.car.subaru.values import DBC, CAR
-from selfdrive.car.subaru.carstate import CarState, get_powertrain_can_parser
+from selfdrive.car.subaru.carstate import CarState, get_powertrain_can_parser, get_cam_parser
 
 try:
   from selfdrive.car.subaru.carcontroller import CarController
