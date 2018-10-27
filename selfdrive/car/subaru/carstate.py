@@ -5,7 +5,7 @@ from selfdrive.config import Conversions as CV
 from selfdrive.can.parser import CANParser
 from selfdrive.car.subaru.values import DBC, CAR
 
-def get_powertrain_can_parser(CP, canbus):
+def get_powertrain_can_parser(CP):
   # this function generates lists for signal, messages and initial values
   signals = [
     # sig_name, sig_address, default
@@ -31,27 +31,29 @@ def get_powertrain_can_parser(CP, canbus):
     ("Steering_Torque", 100),
   ]
 
-  return CANParser(DBC[CP.carFingerprint]['pt'], signals, checks, canbus.powertrain)
+  return CANParser(DBC[CP.carFingerprint]['pt'], signals, checks, 0)
 
-def get_camera_parser(CP, canbus):
+def get_camera_parser(CP):
   
   signals = [
     # sig_name, sig_address, default
     ("Cruise_On", "ES_Status", 0)
     ("Cruise_Activated", "ES_Status", 0)
     ("WHEELS_MOVING_2015", "ES_Status", 0)
-    ("Cruise_On", "ES_Brake", 0)
     ("Saved_Speed", "ES_Status", 0)
-    ("Cruise_On", "ES_CruiseThrottle", 0)
     ("All_depart_2015", "ES_LDW", 0)
+    ("Car_Follow", "ES_Status", 0)
+    ("Obstacle_Distance", "ES_Status", 0)
+    ("CloseDistance", "ES_Status", 0)
+    ("DistanceSwap", "ES_Status", 0)
   ]
 
   checks = []
 
-  return CANParser(DBC[CP.carFingerprint]['pt'], signals, checks, canbus.camera)
+  return CANParser(DBC[CP.carFingerprint]['pt'], signals, checks, 1)
 
 class CarState(object):
-  def __init__(self, CP, canbus):
+  def __init__(self, CP):
     # initialize can parser
     self.CP = CP
     
