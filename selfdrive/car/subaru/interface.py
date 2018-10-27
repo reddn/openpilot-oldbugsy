@@ -64,7 +64,7 @@ class CarInterface(object):
       ret.centerToFront = ret.wheelbase * 0.5
       
       ret.steerRatio = 14
-      ret.steerActuatorDelay = 0.3
+      ret.steerActuatorDelay = 0.2
       ret.steerRateCost = 0
       ret.steerKf = 0.000007
       ret.steerKiBP, ret.steerKpBP = [[0.], [0.]] # m/s
