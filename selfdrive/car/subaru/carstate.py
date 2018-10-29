@@ -46,6 +46,8 @@ class CarState(object):
     self.steer_torque_driver = 0
     self.steer_not_allowed = False
     self.main_on = False
+    self.angle_steers_rate_prev = 0
+    self.steer_counter = 1
 
     # vEgo kalman filter
     dt = 0.01
@@ -86,3 +88,10 @@ class CarState(object):
     if self.car_fingerprint == CAR.XV2018:  
       self.steer_override = abs(self.steer_torque_driver) > 250.0
       self.angle_steers = pt_cp.vl["Steering"]['Steering_Angle']
+    
+    # calculate steer rate
+    if self.angle_steers != self.angle_steers_prev:
+      self.angle_steers_rate = (self.angle_steers - self.angle_steers_prev)*(100/self.steer_counter)
+      self.steer_counter = 0
+    self.steer_counter += 1
+    self.angle_steers_prev = self.angle_steers
