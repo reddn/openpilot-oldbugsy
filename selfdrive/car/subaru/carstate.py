@@ -46,6 +46,7 @@ class CarState(object):
     self.steer_torque_driver = 0
     self.steer_not_allowed = False
     self.main_on = False
+    self.angle_steers_rate = 0
     self.angle_steers_prev = 0
     self.steer_counter = 1
 
