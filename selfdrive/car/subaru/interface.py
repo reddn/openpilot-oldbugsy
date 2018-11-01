@@ -58,7 +58,7 @@ class CarInterface(object):
     ret.enableCamera = True
     std_cargo = 136
 
-    if candidate == CAR.OUTBACK:
+    if candidate == CAR.OUTBACK_15:
       ret.mass = 1568 + std_cargo
       ret.wheelbase = 2.75
       ret.centerToFront = ret.wheelbase * 0.5
@@ -71,7 +71,34 @@ class CarInterface(object):
       ret.steerKpV, ret.steerKiV = [[0.003], [0.00]]
       ret.steerMaxBP = [0.] # m/s
       ret.steerMaxV = [1.]
-    elif candidate == CAR.LEGACY:
+    elif candidate == CAR.OUTBACK_17:
+      ret.mass = 1568 + std_cargo
+      ret.wheelbase = 2.75
+      ret.centerToFront = ret.wheelbase * 0.5
+      
+      ret.steerRatio = 14
+      ret.steerActuatorDelay = 0.3
+      ret.steerRateCost = 0
+      ret.steerKf = 0.000002
+      ret.steerKiBP, ret.steerKpBP = [[0.], [0.]] # m/s
+      ret.steerKpV, ret.steerKiV = [[0.003], [0.00]]
+      ret.steerMaxBP = [0.] # m/s
+      ret.steerMaxV = [1.]	
+	
+    elif candidate == CAR.LEGACY_15:
+      ret.mass = 1568 + std_cargo
+      ret.wheelbase = 2.75
+      ret.centerToFront = ret.wheelbase * 0.5
+      
+      ret.steerRatio = 14
+      ret.steerActuatorDelay = 0.3
+      ret.steerRateCost = 0
+      ret.steerKf = 0.000002
+      ret.steerKiBP, ret.steerKpBP = [[0.], [0.]] # m/s
+      ret.steerKpV, ret.steerKiV = [[0.003], [0.00]]
+      ret.steerMaxBP = [0.] # m/s
+      ret.steerMaxV = [1.]
+    elif candidate == CAR.LEGACY_17:
       ret.mass = 1568 + std_cargo
       ret.wheelbase = 2.75
       ret.centerToFront = ret.wheelbase * 0.5
