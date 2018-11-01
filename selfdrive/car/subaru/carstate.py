@@ -79,7 +79,7 @@ class CarState(object):
     self.acc_active = pt_cp.vl["CruiseControl"]['Cruise_Activated'] 
     self.main_on = pt_cp.vl["CruiseControl"]['Cruise_On']
 
-    if self.car_fingerprint in (CAR.OUTBACK, CAR.LEGACY):
+    if self.car_fingerprint in (CAR.OUTBACK_15, CAR.OUTBACK_17, CAR.LEGACY_15, CAR.LEGACY_17):
       self.steer_override = abs(self.steer_torque_driver) > 1.5
       self.angle_steers = pt_cp.vl["Steering_Torque"]['Steering_Angle']
     
