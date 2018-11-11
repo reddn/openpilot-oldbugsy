@@ -336,20 +336,16 @@ BO_ 1786 NEW_MSG_9: 8 XXX
 
 CM_ SG_ 2 NEW_SIGNAL_1 "";
 CM_ SG_ 211 Brake_Pedal_On "high tolerance";
-CM_ SG_ 212 FL "KPH";
-CM_ SG_ 212 RL "KPH";
 CM_ SG_ 320 Off_Throttle_2 "Less sensitive";
 CM_ SG_ 320 Throttle_Body_ "Throttle related";
 CM_ SG_ 328 Gear "15 = P, 14 = R, 0 = N, 1-6=gear";
 CM_ SG_ 328 Gear_2 "15 = P, 14 = R, 0 = N, 1-6=gear";
-CM_ SG_ 338 Wiper "0 off, 1 on";
 CM_ SG_ 353 NEW_SIGNAL_3_Blank "always 2";
 CM_ SG_ 353 NEW_SIGNAL_2_Blank "0";
 CM_ SG_ 353 NEW_SIGNAL_9 "flipped around quick engagement";
 CM_ SG_ 353 NEW_SIGNAL_6_Blank "always 1";
 CM_ SG_ 353 Brake_On "long activatedish";
 CM_ SG_ 354 RPM "20hz version of Transmission_Engine under Transmission";
-CM_ SG_ 358 Cruise_Activated "is 1 when cruise is able to go";
 CM_ SG_ 358 Car_Follow "front car detected";
 CM_ SG_ 358 3SecondDisengage "seatbelt disengage";
 CM_ SG_ 358 Disengage_Alert "seatbelt and steep hill disengage";
@@ -361,7 +357,6 @@ CM_ SG_ 359 1All_Depart "Left and right depart";
 CM_ SG_ 359 1Right_Depart_Front "object in front, right depart, hill steep and seatbelt disengage alert ";
 CM_ SG_ 359 1Right_Depart "right depart, hill steep and seatbelt disengage";
 CM_ SG_ 642 Counter "Affected by signals";
-CM_ SG_ 642 RIGHT_BLINKER "0 off, 2 right, 1 left";
 CM_ SG_ 880 Steering_Voltage_Flat "receives later than 371";
 CM_ SG_ 880 NEW_SIGNAL_1 "0 in 2017";
 CM_ SG_ 880 NEW_SIGNAL_2 "";
