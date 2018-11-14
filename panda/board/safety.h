@@ -48,7 +48,7 @@ typedef struct {
 } safety_hooks;
 
 // This can be set by the safety hooks.
-int controls_allowed = 0;
+int controls_allowed = 1;
 
 // Include the actual safety policies.
 #include "safety/safety_defaults.h"
@@ -62,6 +62,7 @@ int controls_allowed = 0;
 #include "safety/safety_ford.h"
 #include "safety/safety_cadillac.h"
 #include "safety/safety_hyundai.h"
+#include "safety/safety_subaru.h"
 #include "safety/safety_elm327.h"
 
 const safety_hooks *current_hooks = &nooutput_hooks;
@@ -102,6 +103,7 @@ typedef struct {
 #define SAFETY_CADILLAC 6
 #define SAFETY_HYUNDAI 7
 #define SAFETY_TESLA 8
+#define SAFETY_SUBARU 9
 #define SAFETY_TOYOTA_IPAS 0x1335
 #define SAFETY_TOYOTA_NOLIMITS 0x1336
 #define SAFETY_ALLOUTPUT 0x1337
@@ -116,6 +118,7 @@ const safety_hook_config safety_hook_registry[] = {
   {SAFETY_FORD, &ford_hooks},
   {SAFETY_CADILLAC, &cadillac_hooks},
   {SAFETY_HYUNDAI, &hyundai_hooks},
+  {SAFETY_SUBARU, &subaru_hooks},
   {SAFETY_TOYOTA_NOLIMITS, &toyota_nolimits_hooks},
 #ifdef PANDA
   {SAFETY_TOYOTA_IPAS, &toyota_ipas_hooks},
